@@ -1,0 +1,31 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
+</head>
+<body>
+	<h3>Upload photo within WKWebView</h3>
+<input type="file" accept="image/*" capture="camera" onclick="showPopup()">
+<img id="frame">
+
+<script type="text/javascript">
+
+function showPopup () {
+    try {
+        webkit.messageHandlers.IOSHandler.postMessage("photo1");
+    } catch(err) {
+        console.log('The native context does not exist yet');
+    }
+}
+
+function loadImage(imageData) {	
+	document.getElementById('frame').setAttribute( 'src', 'data:image/jpeg;base64,'+imageData );
+	return imageData.length
+}
+
+</script>
+
+</body>
+</html>
+
+
+
